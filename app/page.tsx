@@ -1,4 +1,6 @@
 "use client";
+
+import { PageContainer } from "@/components/PageContainer";
 import { Home } from "@/features/home/Home";
 
 const Page = () => {
@@ -26,10 +28,9 @@ const Page = () => {
 	};
 
 	return (
-		<div>
+		<PageContainer>
 			<Home />
-			<button onClick={handleClick}>player</button>
-		</div>
+		</PageContainer>
 	);
 };
 

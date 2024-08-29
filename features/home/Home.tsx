@@ -1,38 +1,53 @@
 "use client";
-import { open } from "@tauri-apps/api/dialog";
-import { useFileStore } from "@/stores/useFilesStore";
+import { Button } from "@/components/ui/button";
+import { Reel, useReelStore } from "@/stores/useReelStore";
+import { useUIStore } from "@/stores/useUIStore";
+import { Film, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 export const Home = () => {
-	const { filePaths, setFilePaths } = useFileStore();
+	const { reels, addReel } = useReelStore();
+	const { setCurrentReelID } = useUIStore();
+	const router = useRouter();
 
-	const handleOpenPicker = async () => {
-		const selected = await open({
-			multiple: true,
-			filters: [
-				{
-					name: "Video Files",
-					extensions: ["webm", "mp4"],
-				},
-			],
-		});
+	const addNewReel = () => {
+		const newIndex = Object.keys(reels).length + 1;
+		const newID = uuidv4();
+		const newReel: Reel = {
+			id: newID,
+			name: `Reel ${newIndex}`,
+			slots: [],
+			desc: "",
+		};
+		addReel(newReel);
+	};
 
-		if (Array.isArray(selected)) {
-			setFilePaths(selected);
-		} else if (selected === null) {
-			// user cancelled the selection
-		} else {
-			setFilePaths([selected]);
-		}
+	const navToReel = (id: string) => {
+		setCurrentReelID(id);
+		router.push("/edit");
 	};
 
 	return (
-		<div>
-			<button onClick={handleOpenPicker}>Choose</button>
-			<div>
-				{filePaths.map((f) => (
-					<div key={f}>{f}</div>
-				))}
-			</div>
+		<div className="w-full flex flex-col justify-center items-center gap-4">
+			<div className="text-4xl">Stinger Player</div>
+			{Object.values(reels).map((r, index) => {
+				return (
+					<Button
+						className="flex gap-2 w-40"
+						key={r.name + index}
+						onClick={() => {
+							navToReel(r.id);
+						}}>
+						{r.name}
+					</Button>
+				);
+			})}
+			<Button className="flex gap-2 w-40" onClick={addNewReel}>
+				<div className="flex">
+					<Film /> <Plus />
+				</div>
+			</Button>
 		</div>
 	);
 };

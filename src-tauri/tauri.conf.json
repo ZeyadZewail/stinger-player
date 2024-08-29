@@ -24,6 +24,9 @@
 				"message": true,
 				"open": true,
 				"save": true
+			},
+			"window": {
+				"all": true
 			}
 		},
 		"bundle": {
@@ -64,7 +67,7 @@
 				"fullscreen": false,
 				"height": 600,
 				"resizable": true,
-				"title": "stinger-player",
+				"title": "Stinger-Player (Home)",
 				"width": 800
 			}
 		]

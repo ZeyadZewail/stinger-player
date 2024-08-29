@@ -74,6 +74,20 @@ export const Edit = () => {
         }
     };
 
+    async function setupAppWindow() {
+        const WebviewWindow = (await import("@tauri-apps/api/window")).WebviewWindow;
+        new WebviewWindow("theUniqueLabel", {
+            url: "/player",
+            width: 1280,
+            height: 720,
+            title: "Stinger-Player (Player)",
+        });
+    }
+
+    const handlePlay = async () => {
+        await setupAppWindow();
+    };
+
     return (
         <div className="w-screen h-screen flex flex-col p-4 pb-12 justify-between">
             <div>
@@ -105,9 +119,7 @@ export const Edit = () => {
                 </div>
             </div>
             <div className="w-full flex items-center justify-center">
-                <Button className="flex text-xl" onClick={() => {
-                    router.push('/player')
-                }}>
+                <Button className="flex text-xl" onClick={handlePlay}>
                     Play<Play height={20}/>
                 </Button>
             </div>

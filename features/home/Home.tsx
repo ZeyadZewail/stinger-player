@@ -5,6 +5,7 @@ import {useUIStore} from "@/stores/useUIStore";
 import {Film, Plus} from "lucide-react";
 import {useRouter} from "next/navigation";
 import {v4 as uuidv4} from "uuid";
+import {DeleteReelDialog} from "@/features/home/deleteReelDialog";
 
 export const Home = () => {
     const {reels, addReel} = useReelStore();
@@ -31,23 +32,26 @@ export const Home = () => {
     return (
         <div className="w-full flex flex-col justify-center items-center gap-4  pb-12">
             <div className="text-4xl">Stinger Player</div>
+            <Button className="absolute right-2 top-2" onClick={() => {
+                router.push('/manage-stingers')
+            }}>Manage Stingers</Button>
             {Object.values(reels).map((r, index) => {
                 return (
-                    <Button
+                    <div className="flex gap-2" key={r.id}><Button
                         className="flex gap-2 w-40"
-                        key={r.name + index}
                         onClick={() => {
                             navToReel(r.id);
                         }}>
                         {r.name}
-                    </Button>
+                    </Button><DeleteReelDialog reel={r}/></div>
                 );
             })}
-            <Button className="flex gap-2 w-40" onClick={addNewReel}>
+            <Button className=" w-52 flex gap-2" onClick={addNewReel}>
                 <div className="flex">
                     <Film/> <Plus/>
                 </div>
             </Button>
         </div>
+
     );
 };

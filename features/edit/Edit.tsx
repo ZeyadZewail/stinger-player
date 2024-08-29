@@ -81,6 +81,7 @@ export const Edit = () => {
             width: 1280,
             height: 720,
             title: "Stinger-Player (Player)",
+            resizable: false
         });
     }
 
@@ -89,7 +90,7 @@ export const Edit = () => {
     };
 
     return (
-        <div className="w-screen h-screen flex flex-col p-4 pb-12 justify-between">
+        <div className="min-w-screen min-h-screen flex flex-col p-4 pb-12 justify-between">
             <div>
                 <div className="flex gap-4">
                     <div onClick={() => {
@@ -102,7 +103,7 @@ export const Edit = () => {
                            onChange={onNameChange}/>
                 </div>
                 <div className="flex">
-                    <div className="flex w-full p-4 flex-col overflow-auto gap-2">
+                    <div className="flex w-full p-4 flex-col overflow-auto max-h-[500px] gap-2">
                         {currentReel.slots.map((s, index) => {
                             return <VideoRow key={s.path + index} slot={s} index={index}/>;
                         })}

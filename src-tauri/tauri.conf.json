@@ -81,7 +81,8 @@
         "fullscreen": false,
         "height": 720,
         "title": "Stinger-Player (Main)",
-        "width": 1280
+        "width": 1280,
+        "resizable": false
       }
     ]
   }

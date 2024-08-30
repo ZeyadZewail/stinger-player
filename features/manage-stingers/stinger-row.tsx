@@ -34,6 +34,26 @@ export const StingerRow = ({ stinger }: { stinger: Stinger }) => {
     editStinger(newStinger);
   };
 
+  const handleChangeStingerBeforeDelay = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (Number(event.target.value) < 0) {
+      return;
+    }
+    const newStinger = { ...stinger, beforeDelay: Number(event.target.value) };
+    editStinger(newStinger);
+  };
+
+  const handleChangeStingerAfterDelay = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
+    if (Number(event.target.value) < 0) {
+      return;
+    }
+    const newStinger = { ...stinger, afterDelay: Number(event.target.value) };
+    editStinger(newStinger);
+  };
+
   document.onkeydown = function (evt) {
     evt = evt || window.event;
     var isEnter = false;
@@ -67,6 +87,18 @@ export const StingerRow = ({ stinger }: { stinger: Stinger }) => {
           {stinger.name}
         </Button>
       )}
+      <input
+        className="h-full text-2xl w-10 bg-transparent"
+        type="number"
+        value={stinger.beforeDelay}
+        onChange={handleChangeStingerBeforeDelay}
+      />
+      <input
+        className="h-full text-2xl w-10 bg-transparent"
+        type="number"
+        value={stinger.afterDelay}
+        onChange={handleChangeStingerAfterDelay}
+      />
       <Button
         onClick={() => {
           setIsEdit(!isEdit);

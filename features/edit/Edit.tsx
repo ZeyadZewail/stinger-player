@@ -108,12 +108,13 @@ export const Edit = () => {
   };
 
   async function setupAppWindow() {
-    new WebviewWindow("theUniqueLabel", {
+    const newWindow = new WebviewWindow("theUniqueLabel", {
       url: "/player",
       width: 1280,
       height: 720,
       title: "Stinger-Player (Player)",
       resizable: false,
+      focus: false,
     });
   }
 

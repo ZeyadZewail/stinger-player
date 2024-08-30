@@ -68,10 +68,10 @@ export const ManageStingers = () => {
         </div>
         <div className="flex">
           <div className="flex w-full p-4 flex-col overflow-auto max-h-[500px] gap-2">
-            <div className="flex gap-2 w-full">
-              <div className="w-[350px]">Clip</div>
-              <div>Before</div>
-              <div>After</div>
+            <div className="flex w-full">
+              <div className="w-[280px]">Clip</div>
+              <div className="w-[90px]">Before (ms)</div>
+              <div>After (ms)</div>
             </div>
             {Object.values(stingers).map((s, index) => {
               return <StingerRow key={s.path + index} stinger={s} />;

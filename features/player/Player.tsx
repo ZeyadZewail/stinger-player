@@ -20,22 +20,29 @@ export const Player = () => {
   const stingerAfterPlayer = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const videoPlayerRef = videoPlayer.current;
     const handleEnded = () => {
       if (currentIndex < currentReel.slots.length - 1) {
         setCurrentIndex((prevIndex) => prevIndex + 1);
-      } else {
-        setCurrentIndex(0);
       }
     };
 
-    if (videoPlayer.current) {
+    if (
+      stingerAfterPlayer.current &&
+      currentReel.slots[currentIndex]?.stingerAfterID
+    ) {
+      stingerAfterPlayer.current.addEventListener("ended", handleEnded);
+    } else if (videoPlayer.current) {
       videoPlayer.current.addEventListener("ended", handleEnded);
     }
 
     return () => {
-      if (videoPlayerRef) {
-        videoPlayerRef.removeEventListener("ended", handleEnded);
+      if (
+        stingerAfterPlayer.current &&
+        currentReel.slots[currentIndex]?.stingerAfterID
+      ) {
+        stingerAfterPlayer.current.removeEventListener("ended", handleEnded);
+      } else if (videoPlayer.current) {
+        videoPlayer.current.removeEventListener("ended", handleEnded);
       }
     };
   }, [
@@ -50,7 +57,7 @@ export const Player = () => {
       stingerBeforePlayer.current?.play();
       setTimeout(() => {
         videoPlayer.current?.play();
-      }, stingers[currentReel.slots[currentIndex]?.stingerBeforeID]?.beforeDelay * 1000);
+      }, stingers[currentReel.slots[currentIndex]?.stingerBeforeID]?.beforeDelay);
     } else {
       videoPlayer.current?.play();
     }
@@ -62,7 +69,7 @@ export const Player = () => {
       videoPlayer.current.addEventListener("ended", () => {
         setTimeout(() => {
           stingerAfterPlayer.current?.play();
-        }, stingers[currentReel.slots[currentIndex]?.stingerAfterID]?.afterDelay * 1000);
+        }, stingers[currentReel.slots[currentIndex]?.stingerAfterID]?.afterDelay);
       });
     }
   }, [currentIndex]);

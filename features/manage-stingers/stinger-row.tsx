@@ -75,26 +75,26 @@ export const StingerRow = ({ stinger }: { stinger: Stinger }) => {
     <div className="w-full flex gap-2 ">
       {isEdit ? (
         <input
-          className="h-full text-2xl w-full bg-transparent"
+          className="h-full text-lg w-full bg-transparent"
           value={stinger.name}
           onChange={handleChangeStingerName}
         />
       ) : (
         <Button
-          className="w-60 flex-1 block overflow-ellipsis overflow-hidden whitespace-nowrap"
+          className="w-60 flex-1 block overflow-ellipsis overflow-hidden whitespace-nowrap h-full"
           onClick={setCurrentVideo}
         >
           {stinger.name}
         </Button>
       )}
       <input
-        className="h-full text-2xl w-10 bg-transparent"
+        className="h-full text-2xl w-20 bg-transparent border border-gray-200 rounded-lg p-1"
         type="number"
         value={stinger.beforeDelay}
         onChange={handleChangeStingerBeforeDelay}
       />
       <input
-        className="h-full text-2xl w-10 bg-transparent"
+        className="h-full text-2xl w-20 bg-transparent border border-gray-200 rounded-lg p-1"
         type="number"
         value={stinger.afterDelay}
         onChange={handleChangeStingerAfterDelay}
@@ -103,10 +103,11 @@ export const StingerRow = ({ stinger }: { stinger: Stinger }) => {
         onClick={() => {
           setIsEdit(!isEdit);
         }}
+        className="h-full"
       >
         <FilePenLine />
       </Button>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center h-full">
         {fileExists ? (
           <Check className="stroke-green-600" />
         ) : (
@@ -115,7 +116,7 @@ export const StingerRow = ({ stinger }: { stinger: Stinger }) => {
       </div>
       <Button
         variant="destructive"
-        className="min-w-10 p-0"
+        className="min-w-10 p-0 h-full"
         onClick={deleteSlot}
       >
         <Trash />

@@ -6,6 +6,8 @@ import { Check, Trash, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ComboBox } from "@/components/ui/comboBox";
 import { useStingerStore } from "@/stores/useStingerStore";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 export const VideoRow = ({ slot, index }: { slot: Slot; index: number }) => {
   const { currentReelID, setCurrentVideoPath } = useUIStore();
@@ -14,6 +16,14 @@ export const VideoRow = ({ slot, index }: { slot: Slot; index: number }) => {
   const currentReel = reels[currentReelID];
 
   const [fileExists, setFileExists] = useState<undefined | boolean>(undefined);
+
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: slot.id, animateLayoutChanges: () => false });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
 
   useEffect(() => {
     const checkIfExists = async () => {
@@ -50,7 +60,13 @@ export const VideoRow = ({ slot, index }: { slot: Slot; index: number }) => {
   };
 
   return (
-    <div className="w-full flex gap-2 ">
+    <div
+      className="w-full flex gap-2"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       <Button
         className="w-60 flex-1 block overflow-ellipsis overflow-hidden whitespace-nowrap"
         onClick={setCurrentVideo}

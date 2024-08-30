@@ -9,6 +9,15 @@ pnpm install
 pnpm tauri dev
 ```
 
+## Build
+
+```
+pnpm install
+pnpm tauri build
+```
+
+You can find the installer at src-tauri\target\release\bundle\msi\
+
 ## License
 
 This project is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This means you are

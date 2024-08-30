@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Stinger Player
 
-## Getting Started
+Tuari + React app to play clips sequentially while playing stinger clips in between for casting/streaming purposes.
 
-First, run the development server:
+## Install & Run
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```
+pnpm install
+pnpm tauri dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## License
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is licensed under the Creative Commons Attribution-NonCommercial (CC BY-NC) license. This means you are
+free to:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**Share**: Copy and redistribute the material in any medium or format.
+Adapt: Remix, transform, and build upon the material.
+Under the following terms:
 
-## Learn More
+**Attribution**: You must give appropriate credit, provide a link to the license, and indicate if changes were made. You
+may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+NonCommercial: You may not use the material for commercial purposes.
+For the full legal code of the license, please refer to the CC BY-NC License.
 
-To learn more about Next.js, take a look at the following resources:
+## Disclaimer
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is provided "as is," without warranty of any kind, express or implied, including but not limited to the
+warranties of merchantability, fitness for a particular purpose, and non-infringement. In no event shall the authors or
+copyright holders be liable for any claim, damages, or other liability, whether in an action of contract, tort, or
+otherwise, arising from, out of, or in connection with the software or the use or other dealings in the software.

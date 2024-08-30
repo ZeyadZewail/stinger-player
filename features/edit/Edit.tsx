@@ -9,6 +9,7 @@ import { open } from "@tauri-apps/api/dialog";
 import { VideoRow } from "./VideoRow";
 import { convertFileSrc } from "@tauri-apps/api/tauri";
 import { useNavigate } from "react-router-dom";
+import { WebviewWindow } from "@tauri-apps/api/window";
 
 export const Edit = () => {
   const { currentReelID, currentVideoPath, setCurrentVideoPath } = useUIStore();
@@ -39,7 +40,7 @@ export const Edit = () => {
       filters: [
         {
           name: "Video Files",
-          extensions: ["webm", "mp4"],
+          extensions: ["webm", "mp4", "mkv", "mov"],
         },
       ],
     });
@@ -80,8 +81,6 @@ export const Edit = () => {
   };
 
   async function setupAppWindow() {
-    const WebviewWindow = (await import("@tauri-apps/api/window"))
-      .WebviewWindow;
     new WebviewWindow("theUniqueLabel", {
       url: "/player",
       width: 1280,
@@ -116,6 +115,11 @@ export const Edit = () => {
         </div>
         <div className="flex">
           <div className="flex w-full p-4 flex-col overflow-auto max-h-[500px] gap-2">
+            <div className="grid grid-rows-1 grid-cols-3 w-full">
+              <div className="row-span-4">Clip</div>
+              <div className="pl-10">Before</div>
+              <div>After</div>
+            </div>
             {currentReel.slots.map((s, index) => {
               return <VideoRow key={s.path + index} slot={s} index={index} />;
             })}

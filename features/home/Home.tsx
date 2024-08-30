@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Reel, useReelStore } from "@/stores/useReelStore";
 import { useUIStore } from "@/stores/useUIStore";
 import { Film, Plus } from "lucide-react";
-
 import { v4 as uuidv4 } from "uuid";
 import { DeleteReelDialog } from "@/features/home/deleteReelDialog";
 import { useNavigate } from "react-router-dom";

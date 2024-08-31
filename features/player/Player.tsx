@@ -19,6 +19,51 @@ export const Player = () => {
   const stingerBeforePlayer = useRef<HTMLVideoElement>(null);
   const stingerAfterPlayer = useRef<HTMLVideoElement>(null);
 
+  const [paused, setPaused] = useState<boolean>(false);
+
+  const pauseAll = () => {
+    if (!paused) {
+      if (videoPlayer.current) {
+        videoPlayer.current.pause();
+      }
+      if (stingerBeforePlayer.current) {
+        stingerBeforePlayer.current.pause();
+      }
+      if (stingerAfterPlayer.current) {
+        stingerAfterPlayer.current.pause();
+      }
+      setPaused(true);
+    } else {
+      if (videoPlayer.current && !videoPlayer.current.ended) {
+        videoPlayer.current.play();
+      }
+      if (stingerBeforePlayer.current && !stingerBeforePlayer.current.ended) {
+        stingerBeforePlayer.current.play();
+      }
+      if (stingerAfterPlayer.current && !stingerAfterPlayer.current.ended) {
+        stingerAfterPlayer.current.play();
+      }
+      setPaused(false);
+    }
+  };
+
+  document.onkeydown = function (evt) {
+    evt = evt || window.event;
+    var isSpace = false;
+    if ("key" in evt) {
+      isSpace = evt.key === " ";
+    } else {
+      // Older browsers might use keyCode
+      //@ts-ignore
+      isSpace = evt.keyCode === 32;
+    }
+
+    if (isSpace) {
+      // Your logic for when the Space key is pressed
+      pauseAll();
+    }
+  };
+
   useEffect(() => {
     const handleEnded = () => {
       if (currentIndex < currentReel.slots.length - 1) {
